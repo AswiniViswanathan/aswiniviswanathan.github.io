@@ -1,5 +1,3 @@
-
-
     <html>
         <head>
         <title>
@@ -19,20 +17,31 @@
         <input type="reset" value="Cancel"/>
         </form>
 
-
+        <script src="./js/chilli/ChilliLibrary.js"></script>
         <script language="javascript">
+            chilliController.host = "192.168.182.1"; // Hard Coding - not a good idea
+            chilliController.port = "4081";
+            chilliController.interval = 30;
+            chilliController.ssl = "https";
+            // chilliController.onError = handleErrors;
+            // chilliController.onUpdate = updateUI;
+
         function check(form)/*function to check userid & password*/
         {
          /*the following code checkes whether the entered userid and password are matching*/
          if(form.userid.value === "" || form.pswrd.value === "")
           {
             alert("Password and username are required")
-          }
-         else
-         {
-            window.open('target.html') /*displays error message*/
+          } else {
+            // window.open('target.html') /*displays error message*/
+            var username = form.userid.value;
+            var password = form.pswrd.value;
+            
+            chilliController.logon(username, password);
           }
         }
+
+        chilliController.refresh();
         </script>
         </body>
         </html>
